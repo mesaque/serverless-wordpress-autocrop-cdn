@@ -6,6 +6,8 @@ const S3 = new AWS.S3({
 });
 const Sharp = require('sharp');
 const http  = require('http'), Stream = require('stream').Transform;
+const url = require('url');
+const path = require('path');
 
 const BUCKET = process.env.BUCKET;
 const URL = process.env.URL;
@@ -14,6 +16,10 @@ const SIZES = JSON.parse(process.env.SIZES_NEED);
 
 exports.handler = function(event, context, callback) {
 	const key = event.queryStringParameters.key;
+	const myurl = new url.parse(key);
+	const filename = path.basename(myurl.pathname);
+	const file_required_size = filename.match(/-([^-]+)-?\./)[1];
+
 	if(!key){
 		var error = new SizeNotExist("Key not expecified!");
 		callback(error);
@@ -21,17 +27,18 @@ exports.handler = function(event, context, callback) {
 		return;
 	}
 
-	const match = key.match(/(\d+)x(\d+)\/(.*)/);
+	const match = file_required_size.split('x');
 
 	var width  = 0;
 	var height = 0;
 	var originalKey = "";
 
 	if( match ) {
-		width = parseInt(match[1], 10);
-		height = parseInt(match[2], 10);
-		originalKey = match[3];
+		width = parseInt(match[0]);
+		height = parseInt(match[1]);
+		originalKey = myurl.pathname;
 	}
+
 
  
 	function SizeNotExist(message) {
