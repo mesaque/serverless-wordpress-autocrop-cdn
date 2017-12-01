@@ -25,6 +25,8 @@
   "homepage": "https://github.com/mesaque/serverless-wordpress-autocrop-cdn#readme",
   "dependencies": {
     "aws-sdk": "^2.153.0",
-    "sharp": "^0.18.4"
+    "http": "0.0.0",
+    "sharp": "^0.18.4",
+    "stream": "0.0.2"
   }
 }
