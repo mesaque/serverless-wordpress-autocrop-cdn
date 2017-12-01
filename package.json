@@ -1,0 +1,26 @@
+{
+  "name": "serverless-wordpress-autocrop-cdn",
+  "version": "1.0.0",
+  "description": "handle with images write them on cdn and generating crops",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesaque/serverless-wordpress-autocrop-cdn.git"
+  },
+  "keywords": [
+    "cnd",
+    "aws",
+    "crop",
+    "wp",
+    "wordpress"
+  ],
+  "author": "mesaque.s.silva@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mesaque/serverless-wordpress-autocrop-cdn/issues"
+  },
+  "homepage": "https://github.com/mesaque/serverless-wordpress-autocrop-cdn#readme"
+}
