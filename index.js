@@ -39,7 +39,6 @@ exports.handler = function(event, context, callback) {
 		originalKey = myurl.pathname;
 	}
 
-
  
 	function SizeNotExist(message) {
 			this.name = "SizeNotExistError";
@@ -72,7 +71,6 @@ exports.handler = function(event, context, callback) {
 	      		console.log("Status code not 200: " + res.statusCode + " image: " + DOMAIN+params.Key);
 
 	    		}else{
-
 	    			var imagedata = new Stream();
 
 				    res.on('data', function(chunk){
@@ -129,7 +127,6 @@ exports.handler = function(event, context, callback) {
 	  		});
 	
 		}else{
-
 			S3.getObject(params).promise()
 			.then(data => Sharp(data.Body)
 				.resize(width, height)
@@ -140,7 +137,7 @@ exports.handler = function(event, context, callback) {
 					Body: buffer,
 					Bucket: BUCKET,
 					ContentType: 'image/png',
-					Key: key,
+					Key: originalKey.substr(1,originalKey.length),
 					StorageClass: "REDUCED_REDUNDANCY",
 					Expires: new Date(+new Date + 12096e5),
 				}).promise()
